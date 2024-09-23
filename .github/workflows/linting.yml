@@ -18,10 +18,12 @@ jobs:
       - name: Check style
         run: npm run eslint
   build:
+    runs-on: ubuntu-20.04
     steps:
       - name: build
         run: npm run build
   test:
+    runs-on: ubuntu-20.04
     steps:
       - name: test
         run: npm run test
