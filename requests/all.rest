@@ -3,3 +3,6 @@ GET http://localhost:5000/version
 
 ###
 GET https://full-stack-open-pokedex-summer-log-9248.fly.dev/version
+
+###
+GET https://full-stack-open-pokedex-summer-log-9248.fly.dev/
