@@ -17,14 +17,8 @@ jobs:
         run: npm install
       - name: Check style
         run: npm run eslint
-  build:
-    runs-on: ubuntu-20.04
-    steps:
       - name: build
         run: npm run build
-  test:
-    runs-on: ubuntu-20.04
-    steps:
       - name: test
         run: npm run test
       - name: install playwright browsers
@@ -37,3 +31,7 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+      - run: flyctl deploy --remote-only
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
