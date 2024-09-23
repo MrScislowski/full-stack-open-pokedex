@@ -1,7 +1,13 @@
-import React from 'react'
+import PropTypes from "prop-types";
+
+import React from "react";
 
 const ErrorMessage = ({ error }) => (
   <div data-testid="error">An error occured: {error.toString()}</div>
-)
+);
 
-export default ErrorMessage
+ErrorMessage.propTypes = {
+  error: PropTypes.object,
+};
+
+export default ErrorMessage;
