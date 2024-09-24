@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize]
 
 jobs:
   linting:
@@ -35,5 +38,5 @@ jobs:
       - run: flyctl deploy --remote-only
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
-      - name: deploy to render.com
-        run: curl ${{ secrets.RENDER_DEPLOY_HOOK }}
+      # - name: deploy to render.com
+      #   run: curl ${{ secrets.RENDER_DEPLOY_HOOK }}
