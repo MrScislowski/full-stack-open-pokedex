@@ -9,7 +9,7 @@ on:
     types: [opened, synchronize]
 
 jobs:
-  linting:
+  build-and-test:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v4
@@ -34,6 +34,12 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
+
+  deploy:
+    runs-on: ubuntu-20.04
+    if: ${{ github.event_name == 'push' }}
+    needs: build-and-test
+    steps:
       - name: set up fly.io
         if: ${{ github.event_name == 'push' }}
         uses: superfly/flyctl-actions/setup-flyctl@master
@@ -42,5 +48,5 @@ jobs:
         run: flyctl deploy --remote-only
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
-      # - name: deploy to render.com
-      #   run: curl ${{ secrets.RENDER_DEPLOY_HOOK }}
+    # - name: deploy to render.com
+    #   run: curl ${{ secrets.RENDER_DEPLOY_HOOK }}
