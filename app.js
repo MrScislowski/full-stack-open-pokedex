@@ -16,7 +16,7 @@ app.get("/health", (req, res) => {
 });
 
 app.get("/debug-delete-me-later", (req, res) => {
-  res.send("direct push commit...");
+  res.send("direct push commit... (done in two commits)");
 });
 
 app.listen(PORT, () => {
