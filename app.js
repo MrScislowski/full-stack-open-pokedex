@@ -6,11 +6,11 @@ const PORT = process.env.PORT || 5000;
 
 app.use(express.static("dist"));
 app.get("/version", (req, res) => {
-  res.send("6");
+  res.send("Version number is: 7");
 });
 
 app.get("/health", (req, res) => {
-  res.send("OK");
+  res.send("Health check is: OK");
 });
 
 app.listen(PORT, () => {
