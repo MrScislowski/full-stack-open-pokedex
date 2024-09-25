@@ -20,3 +20,8 @@ jobs:
         env:
           EVENTS_DATA: ${{ toJson(github.event) }}
         run: echo "$EVENTS_DATA"
+
+      - name: predicts whether this is a merge
+        env:
+          IS_MERGE: ${{ contains(join(github.commits.*.distinct, ", "), "false") }}
+        run: echo "is merge? $IS_MERGE"
