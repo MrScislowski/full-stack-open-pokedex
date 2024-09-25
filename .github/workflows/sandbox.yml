@@ -25,3 +25,8 @@ jobs:
         env:
           IS_MERGE: ${{ contains(join(github.commits.*.distinct, ', '), 'false') }}
         run: echo "is merge? $IS_MERGE"
+
+      - name: commits distinctness array
+        env:
+          INFO: ${{ join(github.commits.*.distinct, ', ') }}
+        run: echo "array: $INFO"
