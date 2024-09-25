@@ -40,6 +40,8 @@ jobs:
     if: ${{ github.event_name == 'push' }}
     needs: build-and-test
     steps:
+      - name: check out source code
+        uses: actions/checkout@v4
       - name: set up fly.io
         if: ${{ github.event_name == 'push' }}
         uses: superfly/flyctl-actions/setup-flyctl@master
