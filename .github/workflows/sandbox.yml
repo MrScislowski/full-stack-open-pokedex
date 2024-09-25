@@ -11,6 +11,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: display all github context
+        env: 
+          CONTEXT: ${{ toJson(github) }}
+        run: echo "$CONTEXT"
+
       - name: display event data
         env:
           EVENTS_DATA: ${{ toJson(github.event) }}
