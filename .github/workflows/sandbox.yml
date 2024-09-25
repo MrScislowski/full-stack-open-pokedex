@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: display all github context
-        env: 
+        env:
           CONTEXT: ${{ toJson(github) }}
         run: echo "$CONTEXT"
 
@@ -23,5 +23,5 @@ jobs:
 
       - name: predicts whether this is a merge
         env:
-          IS_MERGE: ${{ contains(join(github.commits.*.distinct, ", "), "false") }}
+          IS_MERGE: ${{ contains(join(github.commits.*.distinct, ', '), 'false') }}
         run: echo "is merge? $IS_MERGE"
