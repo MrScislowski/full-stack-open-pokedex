@@ -6,7 +6,9 @@ const PORT = process.env.PORT || 5000;
 
 app.use(express.static("dist"));
 app.get("/version", (req, res) => {
-  res.send("Version number is: 7");
+  res.send(
+    "Version number is: now defined by anothrNick's gh action script... 1"
+  );
 });
 
 app.get("/health", (req, res) => {
