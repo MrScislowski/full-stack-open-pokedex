@@ -15,6 +15,10 @@ app.get("/health", (req, res) => {
   res.send("Health check is: OK");
 });
 
+app.get("/debug-delete-me-later", (req, res) => {
+  res.send("this exists just for gh actions");
+});
+
 app.listen(PORT, () => {
   console.log(`server started on port ${PORT}`);
 });
