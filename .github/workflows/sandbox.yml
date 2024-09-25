@@ -1,0 +1,17 @@
+name: Hello World!
+
+on:
+  push:
+    branches:
+      - test
+
+jobs:
+  show github actions data:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: display event data
+        env:
+          EVENTS_DATA: ${{ toJson(github.event) }}
+        run: echo "$EVENTS_DATA"
