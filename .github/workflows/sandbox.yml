@@ -28,5 +28,5 @@ jobs:
 
       - name: commits distinctness array
         env:
-          INFO: ${{ join(github.commits.*.distinct, ', ') }}
-        run: echo "array: $INFO"
+          DISTINCT_ARRAY: ${{ join(github.commits.*.distinct, ', ') }}
+        run: echo "$DISTINCT_ARRAY"
