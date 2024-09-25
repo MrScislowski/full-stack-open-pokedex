@@ -23,10 +23,10 @@ jobs:
 
       - name: predicts whether this is a merge
         env:
-          IS_MERGE: ${{ contains(join(github.commits.*.distinct, ', '), 'false') }}
+          IS_MERGE: ${{ contains(join(github.event.commits.*.distinct, ', '), 'false') }}
         run: echo "is merge? $IS_MERGE"
 
       - name: commits distinctness array
         env:
-          DISTINCT_ARRAY: ${{ join(github.commits.*.distinct, ', ') }}
+          DISTINCT_ARRAY: ${{ join(github.event.commits.*.distinct, ', ') }}
         run: echo "$DISTINCT_ARRAY"
