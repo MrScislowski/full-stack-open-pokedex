@@ -16,7 +16,7 @@ app.get("/health", (req, res) => {
 });
 
 app.get("/debug-delete-me-later", (req, res) => {
-  res.send("this exists just for gh actions. Iteration #2");
+  res.send("this exists just for gh actions. Iteration #3. This time with a pull request.");
 });
 
 app.listen(PORT, () => {
