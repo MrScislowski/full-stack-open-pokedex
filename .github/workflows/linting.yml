@@ -9,6 +9,32 @@ on:
     types: [opened, synchronize]
 
 jobs:
+
+  check-whether-deploy-necessary:
+    runs-on: ubuntu-20.04
+    # needs: build-and-test
+    # if: ${{ github.event_name == 'push' && !( contains(join(github.commits.*.distinct, ', '), 'false') && contains(join(github.commits.*.message, ', '), '#skip') ) }}
+    steps:
+      - name: commits array distinct property
+        env: 
+          COMMITS_DISTINCT: ${{ join(github.commits.*.distinct, ', ') }}
+        run: echo "$COMMITS_DISTINCT"
+      - name: is a merge
+        env: 
+          IS_MERGE: ${{ contains(join(github.commits.*.distinct, ', '), 'false') }}
+        run: echo "$IS_MERGE"
+      - name: commits message property
+        env: 
+          COMMITS_MESSAGE: ${{ join(github.commits.*.message, ', ') }}
+        run: echo "$COMMITS_MESSAGE"
+      - name: commits contain a skip directive
+        env: 
+          CONTAINS_SKIP: ${{ contains(join(github.commits.*.message, ', '), '#skip') }}
+        run: echo "$CONTAINS_SKIP"
+      - name: should deploy
+        env: 
+          DECISION: ${{ github.event_name == 'push' && !( contains(join(github.commits.*.distinct, ', '), 'false') && contains(join(github.commits.*.message, ', '), '#skip') ) }}
+        
   build-and-test:
     runs-on: ubuntu-20.04
     steps:
@@ -34,13 +60,6 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
-
-  check-whether-deploy-necessary:
-    runs-on: ubuntu-20.04
-    needs: build-and-test
-    if: ${{ github.event_name == 'push' && !( contains(join(github.commits.*.distinct, ', '), 'false') && contains(join(github.commits.*.message, ', '), '#skip') ) }}
-    steps:
-      - run: echo "deployment deemed necessary"
 
   deploy:
     runs-on: ubuntu-20.04
