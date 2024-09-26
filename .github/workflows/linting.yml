@@ -37,7 +37,10 @@ jobs:
 
   deploy:
     runs-on: ubuntu-20.04
-    if: ${{ github.event_name == 'push' }}
+    env:
+      IS_MERGE: ${{ contains(join(github.commits.*.distinct, ', '), 'false') }}
+      HAS_SKIP: ${{ contains(join(github.commits.*.message, ', '), '#skip') }}
+    if: ${{ github.event_name == 'push' && !(env.IS_MERGE && env.HAS_SKIP)  }}
     needs: build-and-test
     steps:
       - name: check out source code

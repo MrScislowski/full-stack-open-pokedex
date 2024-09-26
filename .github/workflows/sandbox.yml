@@ -24,6 +24,7 @@ jobs:
       - name: predicts whether this is a merge
         env:
           IS_MERGE: ${{ contains(join(github.commits.*.distinct, ', '), 'false') }}
+          HAS_SKIP: ${{ contains(join(github.commits.*.message, ', '), '#skip') }}
         run: echo "is merge? $IS_MERGE"
 
       - name: commits distinctness array
