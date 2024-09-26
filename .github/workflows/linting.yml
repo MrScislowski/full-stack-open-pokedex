@@ -40,7 +40,7 @@ jobs:
     needs: build-and-test
     if: ${{ github.event_name == 'push' && !( contains(join(github.commits.*.distinct, ', '), 'false') && contains(join(github.commits.*.message, ', '), '#skip') ) }}
     steps:
-      run: echo "deployment deemed necessary"
+      - run: echo "deployment deemed necessary"
 
   deploy:
     runs-on: ubuntu-20.04
