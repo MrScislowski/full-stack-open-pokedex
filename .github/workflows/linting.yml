@@ -44,7 +44,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-20.04
-    needs: check-whether-deploy-necessary
+    needs: [check-whether-deploy-necessary, build-and-test]
     steps:
       - name: check out source code
         uses: actions/checkout@v4
