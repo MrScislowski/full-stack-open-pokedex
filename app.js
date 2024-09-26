@@ -6,9 +6,9 @@ const PORT = process.env.PORT || 5000;
 
 app.use(express.static("dist"));
 app.get("/version", (req, res) => {
-  // fluffy comment :)
+  // unnecessary comment...
   res.send(
-    "This update shouldn't be deployed, because it has a #skip commit message"
+    "This merge is good... has no #skips"
   );
 });
 
