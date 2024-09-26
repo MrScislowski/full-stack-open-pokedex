@@ -35,13 +35,16 @@ jobs:
           path: playwright-report/
           retention-days: 30
 
+  check-whether-deploy-necessary:
+    runs-on: ubuntu-20.04
+    needs: build-and-test
+    if: ${{ github.event_name == 'push' && !( contains(join(github.commits.*.distinct, ', '), 'false') && contains(join(github.commits.*.message, ', '), '#skip') ) }}
+    steps:
+      run: echo "deployment deemed necessary"
+
   deploy:
     runs-on: ubuntu-20.04
-    env:
-      IS_MERGE: ${{ contains(join(github.commits.*.distinct, ', '), 'false') }}
-      HAS_SKIP: ${{ contains(join(github.commits.*.message, ', '), '#skip') }}
-    if: ${{ github.event_name == 'push' && !(env.IS_MERGE && env.HAS_SKIP)  }}
-    needs: build-and-test
+    needs: check-whether-deploy-necessary
     steps:
       - name: check out source code
         uses: actions/checkout@v4
