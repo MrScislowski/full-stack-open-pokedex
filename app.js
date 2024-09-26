@@ -8,7 +8,7 @@ app.use(express.static("dist"));
 app.get("/version", (req, res) => {
   // fluffy comment :)
   res.send(
-    "Version number is: This update should happen b/c it's a merge w/ no #skips"
+    "This update shouldn't be deployed, because it has a #skip commit message"
   );
 });
 
