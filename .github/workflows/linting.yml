@@ -12,30 +12,9 @@ jobs:
 
   check-whether-deploy-necessary:
     runs-on: ubuntu-20.04
-    # needs: build-and-test
-    # if: ${{ github.event_name == 'push' && !( contains(join(github.event.commits.*.distinct, ', '), 'false') && contains(join(github.event.commits.*.message, ', '), '#skip') ) }}
+    if: ${{ github.event_name == 'push' && !( contains(join(github.event.commits.*.distinct, ', '), 'false') && contains(join(github.event.commits.*.message, ', '), '#skip') ) }}
     steps:
-      - name: commits array distinct property
-        env: 
-          COMMITS_DISTINCT: ${{ join(github.event.commits.*.distinct, ', ') }}
-        run: echo "$COMMITS_DISTINCT"
-      - name: is a merge
-        env: 
-          IS_MERGE: ${{ contains(join(github.event.commits.*.distinct, ', '), 'false') }}
-        run: echo "$IS_MERGE"
-      - name: commits message property
-        env: 
-          COMMITS_MESSAGE: ${{ join(github.event.commits.*.message, ', ') }}
-        run: echo "$COMMITS_MESSAGE"
-      - name: commits contain a skip directive
-        env: 
-          CONTAINS_SKIP: ${{ contains(join(github.event.commits.*.message, ', '), '#skip') }}
-        run: echo "$CONTAINS_SKIP"
-      - name: should deploy
-        env: 
-          DECISION: ${{ github.event_name == 'push' && !( contains(join(github.event.commits.*.distinct, ', '), 'false') && contains(join(github.event.commits.*.message, ', '), '#skip') ) }}
-        run: echo "$DECISION"
-        
+      - run: echo "deploy deemed necessary..."
         
   build-and-test:
     runs-on: ubuntu-20.04
