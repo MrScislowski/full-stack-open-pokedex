@@ -1,32 +1,15 @@
 name: Periodic health check
 
 on:
-  push:
-    branches: 
-      - main
+  schedule:
+    - cron: '5 * * * *'
 
 jobs:
   health-check:
     runs-on: ubuntu-20.04
     if: ${{ contains(join(github.event.commits.*.message, ', '), '#health') }}
     steps:
-    - name: Check url first time
-      uses: jtalk/url-health-check-action@v4
-      with:
-        url: https://full-stack-open-pokedex-summer-log-9248.fly.dev/health
-    - name: Check url second time
-      uses: jtalk/url-health-check-action@v4
-      with:
-        url: https://full-stack-open-pokedex-summer-log-9248.fly.dev/health
-    - name: Check url third time
-      uses: jtalk/url-health-check-action@v4
-      with:
-        url: https://full-stack-open-pokedex-summer-log-9248.fly.dev/health
-    - name: Check url fourth time
-      uses: jtalk/url-health-check-action@v4
-      with:
-        url: https://full-stack-open-pokedex-summer-log-9248.fly.dev/health
-    - name: Check url fifth time
+    - name: Check health url
       uses: jtalk/url-health-check-action@v4
       with:
         url: https://full-stack-open-pokedex-summer-log-9248.fly.dev/health
