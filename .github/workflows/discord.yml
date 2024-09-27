@@ -57,6 +57,7 @@ jobs:
 
       - name: Bump version and push tag
         uses: anothrNick/github-tag-action@1.67.0
+        id: set_version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -64,8 +65,12 @@ jobs:
     runs-on: ubuntu-20.04
     needs: update-version
     steps:
-      - name: show the information I have to work with (do we have new version number?)
+      - name: show the information I have to work with from within github variable
         env:
           STUFF: ${{ toJson(github) }}
         run: echo "$STUFF"
+      - name: show the information I've captured from steps variable
+        env:
+          OTHER_STUFF: ${{ toJson(steps.set_version) }}
+        run: echo "$OTHER_STUFF"
         

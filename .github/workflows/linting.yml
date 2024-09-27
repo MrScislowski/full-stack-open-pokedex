@@ -3,9 +3,9 @@ name: Linting
 on:
   push:
     branches:
-      - main
+      - notmain
   pull_request:
-    branches: [main]
+    branches: [notmain]
     types: [opened, synchronize]
 
 jobs:
