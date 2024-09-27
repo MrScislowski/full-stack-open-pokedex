@@ -19,18 +19,17 @@ jobs:
         run: npm run eslint
       - name: build
         run: npm run build
-      - name: show the information I have to work with on the error front...
-        if: ${{ failure() }}
-        env:
-          STUFF: ${{ toJson(github) }}
-        run: echo "$STUFF"
-      # - name: Actions Status Discord - Notify Failure
-      #   uses: sarisia/actions-status-discord@v1.15.0
-      #   if: ${{ failure() }}
-      #     with: 
-      #       webhook: ${{ secrets.DISCORD_WEBHOOK }}
-      #       nodetail: true
-      #       title: "New version of pokede"
+
+      - name: Report build failure to discord
+        uses: sarisia/actions-status-discord@v1.15.0
+        if: failure()
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          nodetail: true
+          title: "${{ github.event.repository.name }} build failed"
+          description: |
+            See commit ${{ github.sha }}
+          color: 0x8f4700
 
   # deploy:
   #   runs-on: ubuntu-20.04
