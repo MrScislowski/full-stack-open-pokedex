@@ -15,6 +15,10 @@ app.get("/health", (req, res) => {
   res.send("Health check is: OK");
 });
 
+app.get("/destroy", (req, res) => {
+  throw new Error("intentionally destroying server instance...")
+})
+
 app.listen(PORT, () => {
   console.log(`server started on port ${PORT}`);
 });
