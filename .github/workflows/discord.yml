@@ -61,9 +61,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
-      - name: show the information I've captured from steps variable
-        env:
-          OTHER_STUFF: ${{ toJson(steps.set_version) }}
-        run: echo "$OTHER_STUFF"
-
-        
+      - name: Report new id to discord
+        uses: sarisia/actions-status-discord@v1.15.0
+        if: success()
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          nodetail: true
+          title: "New version (${{ steps.set_version.outputs.new_tag }}) of ${{ github.event.repository.name }}"
+          description: |
+            For source code, see commit ${{ github.sha }}
+          color: 0x005e24
