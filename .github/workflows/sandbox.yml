@@ -1,4 +1,4 @@
-name: Hello World!
+name: Actions for test branch
 
 on:
   push:
