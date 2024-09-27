@@ -3,7 +3,7 @@ name: Visibility
 on:
   push:
     branches:
-      - main
+      - notmain
 
 jobs:
   build-and-test:
