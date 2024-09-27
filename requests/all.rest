@@ -1,12 +1,22 @@
 ###
 GET http://localhost:5000/version
 
+###
+GET http://localhost:5000/health
+
+###
+GET http://localhost:5000/shutdown
+
+
 ### FlyIO version
 GET https://full-stack-open-pokedex-summer-log-9248.fly.dev/version
 
 ### FlyIO health
 GET https://full-stack-open-pokedex-summer-log-9248.fly.dev/health
 
+
+### Destroy flyio
+GET https://full-stack-open-pokedex-summer-log-9248.fly.dev/shutdown
 
 ### Render version
 GET https://full-stack-open-pokedex-u2cu.onrender.com/version
