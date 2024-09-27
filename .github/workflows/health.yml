@@ -11,27 +11,22 @@ jobs:
     if: ${{ contains(join(github.event.commits.*.message, ', '), '#health') }}
     steps:
     - name: Check url first time
-      if: always()
       uses: jtalk/url-health-check-action@v4
       with:
         url: https://full-stack-open-pokedex-summer-log-9248.fly.dev/health
     - name: Check url second time
-      if: always()
       uses: jtalk/url-health-check-action@v4
       with:
         url: https://full-stack-open-pokedex-summer-log-9248.fly.dev/health
     - name: Check url third time
-      if: always()
       uses: jtalk/url-health-check-action@v4
       with:
         url: https://full-stack-open-pokedex-summer-log-9248.fly.dev/health
     - name: Check url fourth time
-      if: always()
       uses: jtalk/url-health-check-action@v4
       with:
         url: https://full-stack-open-pokedex-summer-log-9248.fly.dev/health
     - name: Check url fifth time
-      if: always()
       uses: jtalk/url-health-check-action@v4
       with:
         url: https://full-stack-open-pokedex-summer-log-9248.fly.dev/health
