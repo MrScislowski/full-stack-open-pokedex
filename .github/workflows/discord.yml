@@ -62,7 +62,7 @@ jobs:
 
   notify-of-success:
     runs-on: ubuntu-20.04
-    needs: deploy
+    needs: update-version
     steps:
       - name: show the information I have to work with (do we have new version number?)
         env:
