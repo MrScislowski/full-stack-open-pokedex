@@ -12,12 +12,15 @@ app.get("/version", (req, res) => {
 });
 
 app.get("/health", (req, res) => {
-  res.send("Health check is: OK");
+  const decision = Math.random();
+
+  if (decision < 0.3) {
+    res.status(500).send();
+  } else {
+    res.send("Health check is: OK");
+  }
 });
 
-app.get("/shutdown", (req, res) => {
-  process.exit(1);
-})
 
 app.listen(PORT, () => {
   console.log(`server started on port ${PORT}`);
