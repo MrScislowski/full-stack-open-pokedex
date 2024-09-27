@@ -29,3 +29,6 @@ primary_region = 'ewr'
   memory = '1gb'
   cpu_kind = 'shared'
   cpus = 1
+
+[[restart]]
+  policy = "never"
